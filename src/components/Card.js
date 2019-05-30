@@ -4,23 +4,24 @@ import '../styles/card.css';
 
 const Wrapper = styled.div`
 	font-size: 10px;
-	max-width: 60em;
+	width: 60em;
 	height: 30em;
 	box-shadow: 0px 8px 18px -10px rgba(0, 0, 0, 0.5);
 	background-color: #fdfdfd;
-	// background-color: black;
 	border-radius: 6px;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	position: relative;
+	margin: 1em;
 `;
 
 const LeftContainer = styled.div`
 	width: 20em;
 	height: 30em;
-	background-color: #de6c6c;
-	// border-radius: 6px;
+	background-color: ${(props) => props.color};
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
 	z-index: 10;
 	overflow: hidden;
 	transition: .5s width;
@@ -51,7 +52,8 @@ const RightContainer = styled.div`
 
 const CylinderText = styled.p`
 	margin: 0;
-	background-color: #b85554;
+	// background-color: #b85554;
+	background-color: ${props => LightenDarkenColor(props.color, -20)};
 	border-radius: 30px;
 	display: flex;
 	justify-content: center;
@@ -105,7 +107,7 @@ const IconInfoContainer = styled.div`
 	align-self: flex-end;
 	margin-bottom: 1.5em;
 	position: relative;
-	top: 8em;
+	top: 3em;
 `;
 
 const IconInfo = styled.div`
@@ -141,19 +143,84 @@ const ProfileNameLight = styled.h2`
 	width: 100%;
 `;
 
+const ProfileDetailsContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
+	top: -3em;
+	& div {
+		display: flex;
+		justify-content: space-between;
+		width: 35em;
+	}
+
+	& h3 {
+		color: #fdfdfd;
+		font-weight: 300;
+		opacity: .8;
+		font-size: 1.8em;
+		margin: 0;
+		margin-bottom: 0.3em;
+	}
+`;
+
 const Avatar = styled.img`width: 13em;`;
 
-const Card = () => {
+function LightenDarkenColor(col, amt) {
+	var usePound = false;
+
+	if (col[0] === '#') {
+		col = col.slice(1);
+		usePound = true;
+	}
+
+	var num = parseInt(col, 16);
+
+	var r = (num >> 16) + amt;
+
+	if (r > 255) r = 255;
+	else if (r < 0) r = 0;
+
+	var b = ((num >> 8) & 0x00ff) + amt;
+
+	if (b > 255) b = 255;
+	else if (b < 0) b = 0;
+
+	var g = (num & 0x0000ff) + amt;
+
+	if (g > 255) g = 255;
+	else if (g < 0) g = 0;
+
+	return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16);
+}
+
+const Card = (props) => {
 	return (
 		<Wrapper className="card-wrapper">
-			<LeftContainer className="card-expand">
+			<LeftContainer className="card-expand" color={props.color}>
 				<LeftDetailsContainer>
-					<CylinderText style={{ marginTop: '1em' }}>LEVEL 13</CylinderText>
+					<CylinderText color={props.color} style={{ marginTop: '1em' }}>
+						LEVEL 13
+					</CylinderText>
 					<Avatar src={require('../assets/woman.svg')} alt="avatar" />
-					<CylinderText style={{ marginBottom: '1em' }}>5,312 POINTS</CylinderText>
+					<CylinderText color={props.color} style={{ marginBottom: '1em' }}>
+						5,312 POINTS
+					</CylinderText>
 				</LeftDetailsContainer>
 				<RightDetailsContainer>
-					<ProfileNameLight>Jane Doe</ProfileNameLight>
+					<ProfileNameLight>{props.name}</ProfileNameLight>
+					<ProfileDetailsContainer>
+						<div>
+							<h3>Group Name</h3>
+							<h3>Joined January 2019</h3>
+						</div>
+						<div>
+							<h3>Position/Role</h3>
+							<h3>City, Country</h3>
+						</div>
+					</ProfileDetailsContainer>
 					<IconInfoContainer>
 						<IconInfo>
 							<h3>AWARDS</h3>
@@ -179,7 +246,7 @@ const Card = () => {
 				</RightDetailsContainer>
 			</LeftContainer>
 			<RightContainer>
-				<TextPrimary>Jane Doe</TextPrimary>
+				<TextPrimary>{props.name}</TextPrimary>
 				<TextPrimarySmall>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, Fusce a volutpat mauris, at molestie lacus.
 					Nam vestibulum sodales odio ut pulvinar.
