@@ -53,7 +53,7 @@ const RightContainer = styled.div`
 const CylinderText = styled.p`
 	margin: 0;
 	// background-color: #b85554;
-	background-color: ${(props) => LightenDarkenColor(props.color, -30)};
+	background-color: rgba(0, 0, 0, 0.18);
 	border-radius: 30px;
 	display: flex;
 	justify-content: center;
@@ -171,35 +171,6 @@ const ProfileDetailsContainer = styled.div`
 `;
 
 const Avatar = styled.img`width: 13em;`;
-
-// function to darken or lighten color from css tricks
-function LightenDarkenColor(col, amt) {
-	var usePound = false;
-
-	if (col[0] === '#') {
-		col = col.slice(1);
-		usePound = true;
-	}
-
-	var num = parseInt(col, 16);
-
-	var r = (num >> 16) + amt;
-
-	if (r > 255) r = 255;
-	else if (r < 0) r = 0;
-
-	var b = ((num >> 8) & 0x00ff) + amt;
-
-	if (b > 255) b = 255;
-	else if (b < 0) b = 0;
-
-	var g = (num & 0x0000ff) + amt;
-
-	if (g > 255) g = 255;
-	else if (g < 0) g = 0;
-
-	return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16);
-}
 
 const Card = (props) => {
 	return (
