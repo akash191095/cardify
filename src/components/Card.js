@@ -4,7 +4,7 @@ import '../styles/card.css';
 
 const Wrapper = styled.div`
 	font-size: 10px;
-	width: 60em;
+	width: 56em;
 	height: 30em;
 	box-shadow: 0px 8px 18px -10px rgba(0, 0, 0, 0.5);
 	background-color: #fdfdfd;
@@ -53,7 +53,7 @@ const RightContainer = styled.div`
 const CylinderText = styled.p`
 	margin: 0;
 	// background-color: #b85554;
-	background-color: ${props => LightenDarkenColor(props.color, -20)};
+	background-color: ${(props) => LightenDarkenColor(props.color, -30)};
 	border-radius: 30px;
 	display: flex;
 	justify-content: center;
@@ -103,11 +103,12 @@ const RightDetailsContainer = styled.div`
 const IconInfoContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
-	width: 35em;
+	width: 33em;
 	align-self: flex-end;
 	margin-bottom: 1.5em;
 	position: relative;
 	top: 3em;
+	left: -2em;
 `;
 
 const IconInfo = styled.div`
@@ -168,6 +169,7 @@ const ProfileDetailsContainer = styled.div`
 
 const Avatar = styled.img`width: 13em;`;
 
+// function to darken or lighten color from css tricks
 function LightenDarkenColor(col, amt) {
 	var usePound = false;
 

@@ -1,5 +1,19 @@
 /* Make the card panel expand whenever hovered anywhere on the card */
 .card-wrapper:hover .card-expand {
-  width: 60em;  
+	width: 56em;
 	border-radius: 6px;
+}
+
+/* Making the card responsive on mobile screens */
+
+@media (max-width: 620px) {
+	.card-wrapper {
+		font-size: 8px !important;
+	}
+}
+
+@media (max-width: 550px) {
+	.card-wrapper {
+    font-size: 7px !important;
+	}
 }
