@@ -17,3 +17,9 @@
     font-size: 7px !important;
 	}
 }
+
+@media (max-width: 450px) {
+	.card-wrapper {
+    font-size: 6px !important;
+	}
+}

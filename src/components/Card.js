@@ -67,9 +67,10 @@ const CylinderText = styled.p`
 const TextPrimary = styled.h2`
 	margin: 0;
 	position: absolute;
-	left: 50%;
+	left: 80%;
 	transform: translate(-50%, 0%);
 	font-size: 1.8em;
+	width: 100%;
 `;
 
 const TextPrimarySmall = styled.h3`
@@ -133,6 +134,8 @@ const IconInfo = styled.div`
 	}
 `;
 
+/* 
+
 const ProfileNameLight = styled.h2`
 	color: #fdfdfd;
 	font-size: 3.6em;
@@ -140,6 +143,19 @@ const ProfileNameLight = styled.h2`
 	position: relative;
 	left: 3.4em;
 	// transform: translate(-2.5em, 0%);
+	// align-self: flex-start;
+	width: 100%;
+`;
+
+*/
+
+const ProfileNameLight = styled.h2`
+	color: #fdfdfd;
+	font-size: 3.6em;
+	top: -0.3em;
+	position: relative;
+	left: 80%;
+	transform: translate(-50%, 0%);
 	// align-self: flex-start;
 	width: 100%;
 `;
