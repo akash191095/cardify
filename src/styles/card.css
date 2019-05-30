@@ -1,0 +1,4 @@
+/* Make the card panel expand whenever hovered anywhere on the card */
+.card-wrapper:hover .card-expand {
+  width: 60em;  
+}
